@@ -1,0 +1,17 @@
+{
+    "name": "dazzet/convertloop-wordpress",
+    "description": "Convertloop for Wordpress",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Dazzet",
+            "email": "info@dazzet.co"
+        }
+    ],
+    "require": {},
+    "autoload":{
+	"psr-4":{
+		"WpConvertloop\\":"lib/"
+	}
+    }
+}
