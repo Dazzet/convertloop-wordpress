@@ -8,7 +8,9 @@
             "email": "info@dazzet.co"
         }
     ],
-    "require": {},
+    "require": {
+        "convertloop/convertloop-php": "^0.1.0"
+    },
     "autoload":{
 	"psr-4":{
 		"WpConvertloop\\":"lib/"

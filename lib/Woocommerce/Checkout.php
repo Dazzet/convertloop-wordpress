@@ -22,6 +22,15 @@ class Checkout{
     public function start()
     {
         add_action('woocommerce_after_order_notes', array($this, 'converloopCheckbox'));
+       
+        $convertloop = \WpConvertloop\Convertloop\Convertloop::instance();
+
+        $person = array(
+            "email" => "sebastian.usuga.test2@dazzet.co",
+            "first_name" => "Sebastian",
+            "last_name" => "Test2"
+        );
+        $convertloop->people()->createOrUpdate($person);
     }
 
     public function converloopCheckbox($checkout) 
@@ -34,6 +43,8 @@ class Checkout{
             'label' => __('Subscribe to our newsletter', 'wp-convertloop'),
             'default' => true,
         ), $checkout->get_value('customised_fields_name'));
+
+        
     }
 
 }
