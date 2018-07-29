@@ -11,9 +11,8 @@ License:     MIT
 License URI: license.txt
 Text Domain: wp-convertloop
 Domain Path: /languages
-*/
+ */
 
-require_once(__DIR__.'/vendor/autoload.php');
+require_once __DIR__ . '/vendor/autoload.php';
 
 Woocommerce\Checkout::instance()->start();
-

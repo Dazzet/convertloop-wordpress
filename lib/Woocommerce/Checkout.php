@@ -1,9 +1,9 @@
 <?php namespace WpConvertloop\Woocommerce;
 
-class Checkout{
+class Checkout
+{
 
-
-    static function instance() 
+    public static function instance()
     {
         static $obj;
 
@@ -14,7 +14,7 @@ class Checkout{
         return $obj;
     }
 
-    private function __construct() 
+    private function __construct()
     {
 
     }
@@ -22,29 +22,35 @@ class Checkout{
     public function start()
     {
         add_action('woocommerce_after_order_notes', array($this, 'converloopCheckbox'));
-       
-        $convertloop = \WpConvertloop\Convertloop\Convertloop::instance();
-
-        $person = array(
-            "email" => "sebastian.usuga.test2@dazzet.co",
-            "first_name" => "Sebastian",
-            "last_name" => "Test2"
-        );
-        $convertloop->people()->createOrUpdate($person);
+        add_action('woocommerce_new_order', array($this, 'action_woocommerce_neworder'));
     }
 
-    public function converloopCheckbox($checkout) 
+    public function converloopCheckbox($checkout)
     {
-        woocommerce_form_field('customised_fields_name', array(
+        woocommerce_form_field('checkbox_subscribe_convertloop', array(
             'type' => 'checkbox',
             'class' => array(
-                'checkbox-convertloop'
+                'checkbox-convertloop',
             ),
             'label' => __('Subscribe to our newsletter', 'wp-convertloop'),
             'default' => true,
-        ), $checkout->get_value('customised_fields_name'));
+        ), $checkout->get_value('checkbox_subscribe_convertloop'));
+    }
 
-        
+    public function action_woocommerce_neworder($order_id)
+    {
+        if ($_POST['checkbox_subscribe_convertloop'] == true) {
+            $order = wc_get_order($order_id);
+
+            $convertloop = \WpConvertloop\Convertloop\Convertloop::instance();
+
+            $person = array(
+                "email" => $order->get_billing_email(),
+                "first_name" => $order->get_billing_first_name(),
+                "last_name" => $order->get_billing_last_name(),
+            );
+            $convertloop->people()->createOrUpdate($person);
+        }
     }
 
 }
