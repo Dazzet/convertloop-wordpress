@@ -28,7 +28,7 @@ class Settings
 
         register_setting('wp-convertloop', 'convertloop_api_key');
         register_setting('wp-convertloop', 'convertloop_app_id');
-        register_setting('wp-convertloop', 'convertloop_api_version');
+        register_setting('wp-convertloop', 'convertloop_api_version', array('default', 'v1'));
 
     }
 
@@ -120,7 +120,7 @@ class Settings
 
     public function createApiVersionField()
     {
-        $val = get_option('convertloop_api_version', 'v1');
+        $val = get_option('convertloop_api_version');
         echo '<input type="text" name="convertloop_api_version" value="'.$val.'">';
     }
 

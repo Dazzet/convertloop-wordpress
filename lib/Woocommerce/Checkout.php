@@ -3,20 +3,22 @@
 class Checkout
 {
 
-    public static function instance()
+    private $convertloop;
+
+    public static function instance($convertloop)
     {
         static $obj;
 
         if (!isset($obj)) {
-            $obj = new self;
+            $obj = new self($convertloop);
         }
 
         return $obj;
     }
 
-    private function __construct()
+    private function __construct($convertloop)
     {
-
+        $this->convertloop = $convertloop;
     }
 
     public function start()
@@ -41,15 +43,12 @@ class Checkout
     {
         if ($_POST['checkbox_subscribe_convertloop'] == true) {
             $order = wc_get_order($order_id);
-
-            $convertloop = \WpConvertloop\Convertloop\Convertloop::instance();
-
             $person = array(
-                "email" => $order->get_billing_email(),
+                "email"      => $order->get_billing_email(),
                 "first_name" => $order->get_billing_first_name(),
-                "last_name" => $order->get_billing_last_name(),
+                "last_name"  => $order->get_billing_last_name(),
             );
-            $convertloop->people()->createOrUpdate($person);
+            $this->convertloop->people()->createOrUpdate($person);
         }
     }
 

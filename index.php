@@ -15,6 +15,12 @@ Domain Path: /languages
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-Woocommerce\Checkout::instance()->start();
+$convertloop = new \ConvertLoop\ConvertLoop(
+    get_option('convertloop_app_id'),
+    get_option('convertloop_api_key'),
+    get_option('convertloop_api_version')
+);
+
+Woocommerce\Checkout::instance($convertloop)->start();
 ContactForm\Form::instance()->start();
 Wordpress\Settings::instance()->start();
