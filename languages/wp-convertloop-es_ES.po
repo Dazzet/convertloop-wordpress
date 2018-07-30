@@ -1,0 +1,82 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wordpress Convertloop\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-30 22:26+0000\n"
+"PO-Revision-Date: 2018-07-30 22:29+0000\n"
+"Last-Translator: admin <mario.yepes@dazzet.co>\n"
+"Language-Team: Español\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: lib/Wordpress/Settings.php:112
+msgid "Api Key"
+msgstr "Api Key"
+
+#: lib/Wordpress/Settings.php:83
+msgid "Api key And ID"
+msgstr "Llave del Api e ID de aplicación"
+
+#: lib/Wordpress/Settings.php:120
+msgid "Api Version"
+msgstr "Versión del Api"
+
+#: lib/Wordpress/Settings.php:104
+msgid "App ID"
+msgstr "App ID"
+
+#: lib/Wordpress/Settings.php:94
+msgid "Consult your Api Key and App Id in the convertloop dashboard"
+msgstr "Consulte su Api Key y su App Id e el dashboard de ConvertLoop"
+
+#: lib/Wordpress/Settings.php:48 lib/ContactForm/Dashboard.php:58
+msgid "Convertloop"
+msgstr "ConvertLoop"
+
+#. Description of the plugin
+msgid "Convertloop for wordpress"
+msgstr "ConvertLoop para Wordpress"
+
+#: lib/ContactForm/Dashboard.php:77
+msgid "ConvertLoop name"
+msgstr "Nombre de Convertloop"
+
+#: lib/Wordpress/Settings.php:47
+msgid "Convertloop Settings"
+msgstr "Configuración de ConvertLoop"
+
+#: lib/ContactForm/Dashboard.php:77
+msgid "Form field"
+msgstr "Campo del formulario"
+
+#. Author URI of the plugin
+msgid "https://dazzet.co"
+msgstr "https://dazzet.co"
+
+#. URI of the plugin
+msgid "https://dazzet.co/"
+msgstr "https://dazzet.co/"
+
+#: lib/ContactForm/Dashboard.php:74
+msgid "Map fields"
+msgstr "Mapear campos"
+
+#. Author of the plugin
+msgid "Mario Yepez, Sebastian Usuga, Eduardo Diaz"
+msgstr "Mario Yepes, Sebastian Usuga, Eduardo Díaz"
+
+#: lib/ContactForm/Dashboard.php:72
+msgid "Save the form first"
+msgstr "Guarde el formulario primero"
+
+#: lib/Woocommerce/Checkout.php:37
+msgid "Subscribe to our newsletter"
+msgstr "Inscríbase a nuestra lista de correo"
+
+#. Name of the plugin
+msgid "Wordpress Convertloop"
+msgstr "ConvertLoop para Wordpress"

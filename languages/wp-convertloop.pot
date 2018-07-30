@@ -1,0 +1,83 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Wordpress Convertloop\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-30 22:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: lib/Wordpress/Settings.php:112
+msgid "Api Key"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:83
+msgid "Api key And ID"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:120
+msgid "Api Version"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:104
+msgid "App ID"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:94
+msgid "Consult your Api Key and App Id in the convertloop dashboard"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:48 lib/ContactForm/Dashboard.php:58
+msgid "Convertloop"
+msgstr ""
+
+#. Description of the plugin
+msgid "Convertloop for wordpress"
+msgstr ""
+
+#: lib/ContactForm/Dashboard.php:77
+msgid "ConvertLoop name"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:47
+msgid "Convertloop Settings"
+msgstr ""
+
+#: lib/ContactForm/Dashboard.php:77
+msgid "Form field"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://dazzet.co"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://dazzet.co/"
+msgstr ""
+
+#: lib/ContactForm/Dashboard.php:74
+msgid "Map fields"
+msgstr ""
+
+#. Author of the plugin
+msgid "Mario Yepez, Sebastian Usuga, Eduardo Diaz"
+msgstr ""
+
+#: lib/ContactForm/Dashboard.php:72
+msgid "Save the form first"
+msgstr ""
+
+#: lib/Woocommerce/Checkout.php:37
+msgid "Subscribe to our newsletter"
+msgstr ""
+
+#. Name of the plugin
+msgid "Wordpress Convertloop"
+msgstr ""
