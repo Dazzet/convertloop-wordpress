@@ -17,4 +17,4 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 Woocommerce\Checkout::instance()->start();
 ContactForm\Form::instance()->start();
-
+Wordpress\Settings::instance()->start();

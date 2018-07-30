@@ -3,26 +3,29 @@
 class Convertloop{
 
 
-    static function instance() 
+    static function instance()
     {
 
         static $convertloop;
 
         if (!isset($convertloop)) {
-            $convertloop = new \ConvertLoop\ConvertLoop("931b8ad2", "8562jCFAtkHVD77B14iJMX3K", "v1");
+            $id = get_option('convertloop_app_id');
+            $key = get_option('convertloop_api_key');
+            $ver = get_option('convertloop_api_version', 'v1');
+            $convertloop = new \ConvertLoop\ConvertLoop($id, $key, $ver);
         }
 
         return $convertloop;
     }
 
-    private function __construct() 
+    private function __construct()
     {
 
     }
 
     public function start()
     {
-        
+
     }
 
 }
