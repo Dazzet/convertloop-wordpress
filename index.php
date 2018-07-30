@@ -24,4 +24,5 @@ $convertloop = new \ConvertLoop\ConvertLoop(
 
 Woocommerce\Checkout::instance($convertloop)->start();
 ContactForm\Form::instance($convertloop)->start();
+ContactForm\Dashboard::instance()->start();
 Wordpress\Settings::instance()->start();
