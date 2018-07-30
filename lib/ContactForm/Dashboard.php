@@ -8,6 +8,9 @@ class Dashboard
 
     private $convertloop;
 
+    /**
+     * @param string Object Objeto tipo \ConvertLoop\ConvertLoop
+     */
     static function instance($convertloop = null)
     {
         static $obj;
@@ -25,6 +28,9 @@ class Dashboard
 
     }
 
+    /**
+     * Registro de las acciones y filtros de contact-form-7
+     */
     public function start()
     {
         add_filter('wpcf7_contact_form_properties', array($this, 'formProperties'), 10, 2);
@@ -33,6 +39,9 @@ class Dashboard
         add_action('wpcf7_save_contact_form', array($this, 'save'), 10, 1);
     }
 
+    /**
+     * Callback - Especifica que campos adicionales se van a agregar
+     */
     public function formProperties($props, $form)
     {
         $props['convertloop_map'] = isset($props['convertloop_map']) ? $props['convertloop_map']: array();
@@ -40,6 +49,9 @@ class Dashboard
         return $props;
     }
 
+    /**
+     * Callback - Crear una nueva cejilla en la creación de formulario
+     */
     public function addTab($panels)
     {
         $panels['convertloop'] = array(
@@ -49,6 +61,9 @@ class Dashboard
         return $panels;
     }
 
+    /**
+     * Creacion de los campos de formulario a agergar en la nueva cejilla
+     */
     public function tabFields($post)
     {
         $scanned = $post->scan_form_tags();
@@ -69,9 +84,12 @@ class Dashboard
         }
         echo '</table>';
         echo '</fieldset>';
-
     }
 
+    /**
+     * Guardar los nombres que se van a mapear
+     * Esto no es guardar datos de formularios sino que datos se van a enviar a ConvertLoop
+     */
     public function save($form)
     {
         $props = $form->get_properties();

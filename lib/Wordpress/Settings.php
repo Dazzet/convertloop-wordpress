@@ -1,5 +1,8 @@
 <?php namespace WpConvertloop\Wordpress;
 
+/**
+ * Crea la página Settings > Convertloop para guardar la llave y el ID de app
+ */
 class Settings
 {
     public static function instance()
@@ -18,6 +21,9 @@ class Settings
 
     }
 
+    /**
+     * Registra las acciones y filtros de Wordpress
+     */
     public function start()
     {
         add_action('admin_menu', array($this, 'addMenuItem'),  11);
@@ -32,6 +38,9 @@ class Settings
 
     }
 
+    /**
+     * Crea la entrada de menu
+     */
     public function addMenuItem()
     {
         add_options_page(
@@ -46,6 +55,9 @@ class Settings
     }
 
 
+    /**
+     * Crea el HTML de la página
+     */
     public function createPage()
    {
 ?>
@@ -61,10 +73,11 @@ class Settings
         return $this;
     }
 
+    /**
+     * Crea la única sección de la página
+     */
     public function createSections()
     {
-
-        register_setting('wp-convertloop', 'convertloop_app_id');
         add_settings_section(
             'section-1',
             __('Api key And ID', 'wp-convertloop'),
@@ -73,14 +86,19 @@ class Settings
         );
     }
 
+    /**
+     * Ayuda de la única sección de la página
+     */
     public function section1()
     {
         _e('Consult your Api Key and App Id in the convertloop dashboard', 'wp-convertloop');
     }
 
+    /**
+     * Llamados a add_settings_fiel para todos los campos
+     */
     public function createFields()
     {
-
         add_settings_field(
             'convertloop_app_id',
             __('App ID', 'wp-convertloop'),
@@ -106,21 +124,30 @@ class Settings
         );
     }
 
-    public function createApiKeyField()
-    {
-        $val = get_option('convertloop_api_key');
-        echo '<input type="text" name="convertloop_api_key" value="'.$val.'">';
-    }
-
+    /**
+     * Campo para registrar el App ID
+     */
     public function createAppIdField()
     {
         $val = get_option('convertloop_app_id');
         echo '<input type="text" name="convertloop_app_id" value="'.$val.'">';
     }
 
+    /**
+     * Campo para registrar el Api Key
+     */
+    public function createApiKeyField()
+    {
+        $val = get_option('convertloop_api_key');
+        echo '<input type="password" name="convertloop_api_key" value="'.$val.'">';
+    }
+
+    /**
+     * Campo para registrar la version del api a usar
+     */
     public function createApiVersionField()
     {
-        $val = get_option('convertloop_api_version');
+        $val = get_option('convertloop_api_version', 'v1');
         echo '<input type="text" name="convertloop_api_version" value="'.$val.'">';
     }
 

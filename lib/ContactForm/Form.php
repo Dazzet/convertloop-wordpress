@@ -1,5 +1,8 @@
 <?php namespace WpConvertloop\ContactForm;
 
+/**
+ * Envia los datos a ConvertLoop cuando se gaurda la forma
+ */
 class Form
 {
 
@@ -22,31 +25,42 @@ class Form
 
     }
 
+    /**
+     * Inicializacion de acciones y filtros de Wordpress
+     */
     public function start()
     {
-        add_action('wpcf7_before_send_mail',array($this, 'wpcf7_register_person'));
+        add_action('wpcf7_before_send_mail',array($this, 'sendData'));
     }
 
     /**
-     * Funcion que registra una persona en Convertloop pero debe existir
-     * el campo 'your-email' y 'your-name' definidos en el formulario.
-     *
-     * TODO: buscar una forma que funcione independientemente del nombre de los campos
+     * Toma los datos del formulario y verifica si hay que enviar algo a
+     * ConvertLoop
      */
-    public function wpcf7_register_person($wpcf7)
+    public function sendData($form)
     {
-        $submission = \WPCF7_Submission::get_instance();
+        $person = array();
 
+        $props = $form->prop('convertloop_map');
+        if (empty($props)) return;
+
+        $submission = \WPCF7_Submission::get_instance();
         if ( $submission ) {
             $posted_data = $submission->get_posted_data();
         }
 
-        $person = array(
-            "email" => $posted_data['your-email'],
-            "first_name" => $posted_data['your-name']
-        );
+        foreach ($props as $key => $val) {
+            if (empty($posted_data[$key])) continue;
+
+            $cl_key = $props[$key];
+            $person[$cl_key] = $posted_data[$key];
+        }
+
+        if (empty($person)) return $form;
+
+
         $this->convertloop->people()->createOrUpdate($person);
 
-        return $wpcf7;
+        return $form;
     }
 }
