@@ -15,6 +15,7 @@ Domain Path: /languages
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+// La idea es crear aqui los objetos y pasarlos como parámetros
 $convertloop = new \ConvertLoop\ConvertLoop(
     get_option('convertloop_app_id'),
     get_option('convertloop_api_key'),
@@ -22,5 +23,5 @@ $convertloop = new \ConvertLoop\ConvertLoop(
 );
 
 Woocommerce\Checkout::instance($convertloop)->start();
-ContactForm\Form::instance()->start();
+ContactForm\Form::instance($convertloop)->start();
 Wordpress\Settings::instance()->start();

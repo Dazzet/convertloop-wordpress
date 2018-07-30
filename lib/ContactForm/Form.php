@@ -1,8 +1,11 @@
 <?php namespace WpConvertloop\ContactForm;
 
-class Form{
+class Form
+{
 
-    static function instance() 
+    private $convertloop;
+
+    static function instance($convertloop)
     {
         static $obj;
 
@@ -13,8 +16,9 @@ class Form{
         return $obj;
     }
 
-    private function __construct() 
+    private function __construct($convertloop)
     {
+        $this->convertloop = $convertloop;
 
     }
 
@@ -24,9 +28,9 @@ class Form{
     }
 
     /**
-     * Funcion que registra una persona en Convertloop pero debe existir 
+     * Funcion que registra una persona en Convertloop pero debe existir
      * el campo 'your-email' y 'your-name' definidos en el formulario.
-     * 
+     *
      * TODO: buscar una forma que funcione independientemente del nombre de los campos
      */
     public function wpcf7_register_person($wpcf7)
@@ -37,13 +41,11 @@ class Form{
             $posted_data = $submission->get_posted_data();
         }
 
-        $convertloop = \WpConvertloop\Convertloop\Convertloop::instance();
-
         $person = array(
             "email" => $posted_data['your-email'],
             "first_name" => $posted_data['your-name']
         );
-        $convertloop->people()->createOrUpdate($person);
+        $this->convertloop->people()->createOrUpdate($person);
 
         return $wpcf7;
     }
