@@ -10,7 +10,7 @@ class Form
         static $obj;
 
         if (!isset($obj)) {
-            $obj = new self;
+            $obj = new self($convertloop);
         }
 
         return $obj;
