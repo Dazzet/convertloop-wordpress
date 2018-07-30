@@ -74,6 +74,7 @@ class Dashboard
         echo '<h2>'.__('Map fields', 'wp-convertloop').'</h2>';
         echo '<fieldset>';
         echo '<table class="form-table">';
+        echo '<tr><th>'.__('Form field', 'wp-convertloop').'</th><th>'.__('ConvertLoop name', 'wp-convertloop').'</th></tr>';
         foreach ($scanned as  $field) {
             if ($field->type == 'submit') continue;
             echo '<tr>';
