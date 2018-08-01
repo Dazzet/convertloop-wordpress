@@ -1,4 +1,4 @@
-<?php namespace WpConvertloop\ContactForm;
+<?php namespace WpConvertloop\ContactForm7;
 
 /**
  * Envia los datos a ConvertLoop cuando se gaurda la forma

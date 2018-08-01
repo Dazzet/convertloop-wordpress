@@ -1,4 +1,4 @@
-<?php namespace WpConvertloop\ContactForm;
+<?php namespace WpConvertloop\ContactForm7;
 
 /**
  * Crea un nuevo tab y opciones de configuracion en el Dashboard
@@ -72,6 +72,7 @@ class Dashboard
         if (empty($scanned)) return _e('Save the form first', 'wp-convertloop');
 
         echo '<h2>'.__('Map fields', 'wp-convertloop').'</h2>';
+        _e('Here you can configure which form fields are going to be sent to ConvertLoop. Leave empty the fields that are not going to be sent', 'wp-convertloop');
         echo '<fieldset>';
         echo '<table class="form-table">';
         echo '<tr><th>'.__('Form field', 'wp-convertloop').'</th><th>'.__('ConvertLoop name', 'wp-convertloop').'</th></tr>';

@@ -27,7 +27,12 @@ $convertloop = new \ConvertLoop\ConvertLoop(
     get_option('convertloop_api_version')
 );
 
-ContactForm\Form::instance($convertloop)->start();
-ContactForm\Dashboard::instance()->start();
+ContactForm7\Form::instance($convertloop)->start();
+ContactForm7\Dashboard::instance()->start();
 Wordpress\Settings::instance()->start();
 Woocommerce\Checkout::instance($convertloop)->start();
+
+// Insertar código de tracking si el usuario lo quiere
+if (get_option('convertloop_add_snippet', false)) {
+    Wordpress\TrackingCode::instance( get_option('convertloop_app_id') )->start();
+}

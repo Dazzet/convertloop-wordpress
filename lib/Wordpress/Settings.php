@@ -35,7 +35,7 @@ class Settings
         register_setting('wp-convertloop', 'convertloop_api_key');
         register_setting('wp-convertloop', 'convertloop_app_id');
         register_setting('wp-convertloop', 'convertloop_api_version', array('default', 'v1'));
-
+        register_setting('wp-convertloop', 'convertloop_add_snippet');
     }
 
     /**
@@ -84,14 +84,13 @@ class Settings
             array($this, 'section1'),
             'wp-convertloop'
         );
-    }
 
-    /**
-     * Ayuda de la única sección de la página
-     */
-    public function section1()
-    {
-        _e('Consult your Api Key and App Id in the convertloop dashboard', 'wp-convertloop');
+        add_settings_section(
+            'section-2',
+            __('Tracking Code', 'wp-convertloop'),
+            array($this, 'section2'),
+            'wp-convertloop'
+        );
     }
 
     /**
@@ -122,7 +121,24 @@ class Settings
             'wp-convertloop',
             'section-1'
         );
+
+        add_settings_field(
+            'convertloop_add_snippet',
+            __('Include the ConvertLoop JS code in the head?', 'wp-convertloop'),
+            array($this, 'createAddSnippetField'),
+            'wp-convertloop',
+            'section-2'
+        );
     }
+
+    /**
+     * Ayuda de la única sección de la página
+     */
+    public function section1()
+    {
+        printf(__('You have to provide at least the App ID if you just want to use tracking. You can find this data  <a href="%s" target="_blank">here</a>', 'wp-convertloop'), 'https://convertloop.co/account');
+    }
+
 
     /**
      * Campo para registrar el App ID
@@ -130,7 +146,7 @@ class Settings
     public function createAppIdField()
     {
         $val = get_option('convertloop_app_id');
-        echo '<input type="text" name="convertloop_app_id" value="'.$val.'">';
+        echo '<input type="text" name="convertloop_app_id" value="'.$val.'" required="required">';
     }
 
     /**
@@ -140,6 +156,9 @@ class Settings
     {
         $val = get_option('convertloop_api_key');
         echo '<input type="password" name="convertloop_api_key" value="'.$val.'">';
+        echo '<br /><small>';
+        _e('Only if you want to send data to ConvertLoop in forms', 'wp-convertloop');
+        echo '</small>';
     }
 
     /**
@@ -151,4 +170,14 @@ class Settings
         echo '<input type="text" name="convertloop_api_version" value="'.$val.'">';
     }
 
+    public function section2(){
+        _e('Configure the ConvertLoop tracking code for event tracking', 'wp-convertloop');
+    }
+
+    public function createAddSnippetField()
+    {
+        $val = get_option('convertloop_add_snippet', true);
+        $checked = $val ? 'checked="checked"': '';
+        echo '<input type="checkbox" value="1" name="convertloop_add_snippet" '.$checked.'>';
+    }
 }
