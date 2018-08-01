@@ -34,7 +34,7 @@ class Checkout
             'class' => array(
                 'checkbox-convertloop',
             ),
-            'label' => __('Subscribe to our newsletter', 'wp-convertloop'),
+            'label' => __('I want to receive information about deals and discounts', 'wp-convertloop'),
             'default' => true,
         ), $checkout->get_value('checkbox_subscribe_convertloop'));
     }
