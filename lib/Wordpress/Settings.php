@@ -36,6 +36,7 @@ class Settings
         register_setting('wp-convertloop', 'convertloop_app_id');
         register_setting('wp-convertloop', 'convertloop_api_version', array('default', 'v1'));
         register_setting('wp-convertloop', 'convertloop_add_snippet');
+        register_setting('wp-convertloop', 'convertloop_add_woo_checkout');
     }
 
     /**
@@ -91,6 +92,13 @@ class Settings
             array($this, 'section2'),
             'wp-convertloop'
         );
+
+        add_settings_section(
+            'section-3',
+            __('Woocommerce', 'wp-convertloop'),
+            array($this, 'section3'),
+            'wp-convertloop'
+        );
     }
 
     /**
@@ -128,6 +136,14 @@ class Settings
             array($this, 'createAddSnippetField'),
             'wp-convertloop',
             'section-2'
+        );
+
+        add_settings_field(
+            'convertloop_add_woo_checkout',
+            __('Add "subscribe to newsletter" checkbox on checkout?', 'wp-convertloop'),
+            array($this, 'createAddWoocommerceField'),
+            'wp-convertloop',
+            'section-3'
         );
     }
 
@@ -179,5 +195,16 @@ class Settings
         $val = get_option('convertloop_add_snippet', true);
         $checked = $val ? 'checked="checked"': '';
         echo '<input type="checkbox" value="1" name="convertloop_add_snippet" '.$checked.'>';
+    }
+
+    public function section3(){
+        _e('Will work only if you have Woocommerce installed', 'wp-convertloop');
+    }
+
+    public function createAddWoocommerceField()
+    {
+        $val = get_option('convertloop_add_woo_checkout', true);
+        $checked = $val ? 'checked="checked"': '';
+        echo '<input type="checkbox" value="1" name="convertloop_add_woo_checkout" '.$checked.'>';
     }
 }

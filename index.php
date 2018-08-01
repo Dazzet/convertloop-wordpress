@@ -30,7 +30,11 @@ $convertloop = new \ConvertLoop\ConvertLoop(
 ContactForm7\Form::instance($convertloop)->start();
 ContactForm7\Dashboard::instance()->start();
 Wordpress\Settings::instance()->start();
-Woocommerce\Checkout::instance($convertloop)->start();
+
+// Agregar checkbox en el checkout the WooCommerce
+if (get_option('convertloop_add_woo_checkout', true)) {
+    Woocommerce\Checkout::instance($convertloop)->start();
+}
 
 // Insertar código de tracking si el usuario lo quiere
 if (get_option('convertloop_add_snippet', false)) {
