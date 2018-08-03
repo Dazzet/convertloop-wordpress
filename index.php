@@ -4,7 +4,7 @@
 Plugin Name: Wordpress Convertloop
 Plugin URI:  https://dazzet.co/
 Description: Convertloop for wordpress
-Author:      Mario Yepez, Sebastian Usuga, Eduardo Diaz
+Author:      Mario Yepes, Sebastian Usuga, Eduardo Diaz
 Author URI:  https://dazzet.co
 Version:     0.0.1
 License:     MIT

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Convertloop\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-30 22:26+0000\n"
+"POT-Creation-Date: 2018-08-01 21:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,70 +14,137 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: lib/Wordpress/Settings.php:112
-msgid "Api Key"
-msgstr ""
-
-#: lib/Wordpress/Settings.php:83
-msgid "Api key And ID"
-msgstr ""
-
-#: lib/Wordpress/Settings.php:120
-msgid "Api Version"
-msgstr ""
-
-#: lib/Wordpress/Settings.php:104
-msgid "App ID"
-msgstr ""
-
-#: lib/Wordpress/Settings.php:94
-msgid "Consult your Api Key and App Id in the convertloop dashboard"
-msgstr ""
-
-#: lib/Wordpress/Settings.php:48 lib/ContactForm/Dashboard.php:58
+#: lib/ContactForm7/Dashboard.php:58 lib/Wordpress/Settings.php:49
+msgctxt "CovertLoop"
 msgid "Convertloop"
 msgstr ""
 
-#. Description of the plugin
-msgid "Convertloop for wordpress"
-msgstr ""
-
-#: lib/ContactForm/Dashboard.php:77
-msgid "ConvertLoop name"
-msgstr ""
-
-#: lib/Wordpress/Settings.php:47
-msgid "Convertloop Settings"
-msgstr ""
-
-#: lib/ContactForm/Dashboard.php:77
-msgid "Form field"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://dazzet.co"
-msgstr ""
-
-#. URI of the plugin
-msgid "https://dazzet.co/"
-msgstr ""
-
-#: lib/ContactForm/Dashboard.php:74
-msgid "Map fields"
-msgstr ""
-
-#. Author of the plugin
-msgid "Mario Yepez, Sebastian Usuga, Eduardo Diaz"
-msgstr ""
-
-#: lib/ContactForm/Dashboard.php:72
+#: lib/ContactForm7/Dashboard.php:72
+msgctxt "Debe guardar el formulario primero"
 msgid "Save the form first"
 msgstr ""
 
+#: lib/ContactForm7/Dashboard.php:74
+msgctxt "Mapear campos"
+msgid "Map fields"
+msgstr ""
+
+#: lib/ContactForm7/Dashboard.php:75
+msgctxt ""
+"Aquí puede configurar que campos van a ser enviados a ConvertLoop. Deje "
+"vacío los campos que no van a ser enviados"
+msgid ""
+"Here you can configure which form fields are going to be sent to ConvertLoop."
+" Leave empty the fields that are not going to be sent"
+msgstr ""
+
+#: lib/ContactForm7/Dashboard.php:78
+msgctxt "Campo de Formulario"
+msgid "Form field"
+msgstr ""
+
+#: lib/ContactForm7/Dashboard.php:78
+msgctxt "Nombre en ConvertLoop"
+msgid "ConvertLoop name"
+msgstr ""
+
 #: lib/Woocommerce/Checkout.php:37
-msgid "Subscribe to our newsletter"
+msgctxt "Quiero recibir información de descuentos y ofertas"
+msgid "I want to receive information about deals and discounts"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:48
+msgctxt "Ajustes de ConvertLoop"
+msgid "Convertloop Settings"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:84
+msgctxt "Api Key y App ID"
+msgid "Api key And ID"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:91
+msgctxt "Código de seguimiento"
+msgid "Tracking Code"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:98
+msgctxt "Woocommerce"
+msgid "Woocommerce"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:111
+msgctxt "App ID"
+msgid "App ID"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:119
+msgctxt "Api Key"
+msgid "Api Key"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:127
+msgctxt "Versión del Api"
+msgid "Api Version"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:135
+msgctxt "Incluir el código JS de ConvertLoop en el encabezado?"
+msgid "Include the ConvertLoop JS code in the head?"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:143
+msgctxt "Agregar el checkbox de \"inscribirse al newsletter\"  en el checkout?"
+msgid "Add \"subscribe to newsletter\" checkbox on checkout?"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:155
+#, php-format
+msgctxt ""
+"Debe proveer por lo menos el App ID si solo quiere usar rastreo. Puede "
+"encontar esta información <a href=\"%s\" target=\"_blank\">aquí</a>"
+msgid ""
+"You have to provide at least the App ID if you just want to use tracking. "
+"You can find this data  <a href=\"%s\" target=\"_blank\">here</a>"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:176
+msgctxt "Solo si desea enviar datos a ConverLoop en formularios"
+msgid "Only if you want to send data to ConvertLoop in forms"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:190
+msgctxt ""
+"Configure el código de seguimiento de ConvertLoop para registro de eventos"
+msgid "Configure the ConvertLoop tracking code for event tracking"
+msgstr ""
+
+#: lib/Wordpress/Settings.php:201
+msgctxt "Solo funcionará si tiene Woocommerce instalado"
+msgid "Will work only if you have Woocommerce installed"
 msgstr ""
 
 #. Name of the plugin
+msgctxt "ConvertLoop para Wordpress"
 msgid "Wordpress Convertloop"
+msgstr ""
+
+#. Description of the plugin
+msgctxt "ConvertLoop para Wordpress"
+msgid "Convertloop for wordpress"
+msgstr ""
+
+#. URI of the plugin
+msgctxt "https://dazzet.co"
+msgid "https://dazzet.co/"
+msgstr ""
+
+#. Author of the plugin
+msgctxt "Mario Yepes, Sebastian Usuga, Eduardo Díaz"
+msgid "Mario Yepez, Sebastian Usuga, Eduardo Diaz"
+msgstr ""
+
+#. Author URI of the plugin
+msgctxt "https://dazzet.co"
+msgid "https://dazzet.co"
 msgstr ""
