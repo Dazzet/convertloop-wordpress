@@ -24,7 +24,7 @@ class Checkout
     public function start()
     {
         add_action('woocommerce_after_order_notes', array($this, 'converloopCheckbox'));
-        add_action('woocommerce_new_order', array($this, 'newOrder'));
+        add_action('woocommerce_new_order', array($this, 'newOrder'), 11, 1);
     }
 
     public function converloopCheckbox($checkout)

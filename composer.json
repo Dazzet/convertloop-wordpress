@@ -19,7 +19,8 @@
     "scripts": {
       "rsync": [
         "compooser update -o",
-        "rsync -avz -e ssh --delete --exclude=.git  ./* mario.yepes@wp01.dazzet.co:/var/www/wp/wp-content/plugins/convertloop-wordpress/"
+        "rsync -avz -e ssh --delete --exclude=.git  ./* mario.yepes@wp01.dazzet.co:/var/www/wp/wp-content/plugins/convertloop-wordpress/",
+        "composer update"
       ]
     }
 }
