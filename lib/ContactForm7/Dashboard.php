@@ -1,4 +1,8 @@
-<?php namespace WpConvertloop\ContactForm7;
+<?php
+
+namespace WpConvertloop\ContactForm7;
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 /**
  * Crea un nuevo tab y opciones de configuracion en el Dashboard
@@ -76,16 +80,32 @@ class Dashboard
         echo '<fieldset>';
         echo '<table class="form-table">';
         echo '<tr><th>'.__('Form field', 'wp-convertloop').'</th><th>'.__('ConvertLoop name', 'wp-convertloop').'</th></tr>';
+
+        $this->addRow( __('ConvertLooop Segment *', 'wp-convertloop'), '_cl_segment', @$map['_cl_segment']);
+        $this->addRow( __('ConvertLooop Event **', 'wp-convertloop'), '_cl_event', @$map['_cl_event']);
+
         foreach ($scanned as  $field) {
             if ($field->type == 'submit') continue;
-            echo '<tr>';
-            echo '<th scope="row"><label for="">'. $field->name .'</label></th>';
-            echo '<td><input type="text" name="wpcf7-convertloop-map['.$field->name.']" class="large-text code" size="70" value="'.@$map[$field->name].'" /></td>';
-            echo '</tr>';
-
+            $this->addRow($field->name, $field->name, @$map[$field->name]);
         }
+
         echo '</table>';
+        echo '<p>';
+        printf(__('* Review segment documentation <a href="%s" target="_blank">here</a>', 'wp-convertloop'), 'https://convertloop.co/docs/developers/adding-people-to-a-segment');
+        echo '</p>';
+        echo '<p>';
+        printf(__('** Review events documentation <a href="%s" target="_blank">here</a>', 'wp-convertloop'), 'https://convertloop.co/docs/developers/tracking-events');
+        echo '</p>';
         echo '</fieldset>';
+    }
+
+    private function addRow($label, $fieldName, $value)
+    {
+        echo '<tr>';
+        echo '<th scope="row"><label for="">'. $label .'</label></th>';
+        echo '<td><input type="text" name="wpcf7-convertloop-map['.$fieldName.']" class="large-text code" size="70" value="'.$value.'" /></td>';
+        echo '</tr>';
+
     }
 
     /**
@@ -96,7 +116,6 @@ class Dashboard
     {
         $props = $form->get_properties();
         $props['convertloop_map'] = isset($_POST['wpcf7-convertloop-map']) ? $_POST['wpcf7-convertloop-map']: array();
-        //wp_die('<pre>'.print_r($props, true).'</pre>');
         $form->set_properties($props);
     }
 }

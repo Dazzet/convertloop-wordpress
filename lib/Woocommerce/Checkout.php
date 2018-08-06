@@ -1,5 +1,12 @@
-<?php namespace WpConvertloop\Woocommerce;
+<?php
 
+namespace WpConvertloop\Woocommerce;
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
+/**
+ * Inscribir a ConvertLoop en el checkout de WooCommerce
+ */
 class Checkout
 {
 

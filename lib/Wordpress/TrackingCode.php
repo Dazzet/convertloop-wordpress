@@ -1,5 +1,12 @@
-<?php namespace WpConvertloop\Wordpress;
+<?php
 
+namespace WpConvertloop\Wordpress;
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
+/**
+ * Agregar el código JS en el encabezado si el usuario opta por hacerlo
+ */
 class TrackingCode
 {
     /** @var The App ID code */

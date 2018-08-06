@@ -1,4 +1,8 @@
-<?php namespace WpConvertloop\Wordpress;
+<?php
+
+namespace WpConvertloop\Wordpress;
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 /**
  * Crea la página Settings > Convertloop para guardar la llave y el ID de app
@@ -27,16 +31,8 @@ class Settings
     public function start()
     {
         add_action('admin_menu', array($this, 'addMenuItem'),  11);
+        add_action('admin_init', array($this, 'createSectionsAndFields'));
 
-        add_action('admin_init', array($this, 'createSections'));
-
-        add_action('admin_init', array($this, 'createFields'));
-
-        register_setting('wp-convertloop', 'convertloop_api_key');
-        register_setting('wp-convertloop', 'convertloop_app_id');
-        register_setting('wp-convertloop', 'convertloop_api_version', array('default', 'v1'));
-        register_setting('wp-convertloop', 'convertloop_add_snippet');
-        register_setting('wp-convertloop', 'convertloop_add_woo_checkout');
     }
 
     /**
@@ -62,95 +58,112 @@ class Settings
     public function createPage()
    {
 ?>
-    <h1><?php _e('Convertloop Settings') ?></h1>
+    <div class="wrap">
+        <h1><?php _e('Convertloop Settings') ?></h1>
         <form action="options.php" method="post">
             <?php settings_fields('wp-convertloop'); ?>
             <?php do_settings_sections('wp-convertloop') ?>
             <?php submit_button(); ?>
         </form>
 
+    </div>
         <?php
 
         return $this;
     }
 
+
     /**
-     * Crea la única sección de la página
+     * Llamados a add_settings_field para todos los campos
      */
-    public function createSections()
+    public function createSectionsAndFields()
     {
+        // {{{ Section: Api settings
         add_settings_section(
-            'section-1',
+            'section-api',
             __('Api key And ID', 'wp-convertloop'),
-            array($this, 'section1'),
+            array($this, 'sectionApi'),
             'wp-convertloop'
         );
 
-        add_settings_section(
-            'section-2',
-            __('Tracking Code', 'wp-convertloop'),
-            array($this, 'section2'),
-            'wp-convertloop'
-        );
-
-        add_settings_section(
-            'section-3',
-            __('Woocommerce', 'wp-convertloop'),
-            array($this, 'section3'),
-            'wp-convertloop'
-        );
-    }
-
-    /**
-     * Llamados a add_settings_fiel para todos los campos
-     */
-    public function createFields()
-    {
+        register_setting('wp-convertloop', 'convertloop_app_id');
         add_settings_field(
             'convertloop_app_id',
             __('App ID', 'wp-convertloop'),
             array($this, 'createAppIdField'),
             'wp-convertloop',
-            'section-1'
+            'section-api'
         );
 
+        register_setting('wp-convertloop', 'convertloop_api_key');
         add_settings_field(
             'convertloop_api_key',
             __('Api Key', 'wp-convertloop'),
             array($this, 'createApiKeyField'),
             'wp-convertloop',
-            'section-1'
+            'section-api'
         );
 
+        register_setting('wp-convertloop', 'convertloop_api_version');
         add_settings_field(
             'convertloop_api_version',
             __('Api Version', 'wp-convertloop'),
             array($this, 'createApiVersionField'),
             'wp-convertloop',
-            'section-1'
+            'section-api'
+        );
+        // }}}
+
+        // {{{ Section : JS Tracking code
+        add_settings_section(
+            'section-snip',
+            __('Tracking Code', 'wp-convertloop'),
+            array($this, 'sectionSnip'),
+            'wp-convertloop'
         );
 
+        register_setting('wp-convertloop', 'convertloop_add_snippet');
         add_settings_field(
             'convertloop_add_snippet',
             __('Include the ConvertLoop JS code in the head?', 'wp-convertloop'),
             array($this, 'createAddSnippetField'),
             'wp-convertloop',
-            'section-2'
+            'section-snip'
+        );
+        // }}}
+
+        // {{{ Section: Woocommerce
+        add_settings_section(
+            'section-woo',
+            __('Woocommerce', 'wp-convertloop'),
+            array($this, 'sectionWoo'),
+            'wp-convertloop'
         );
 
+        register_setting('wp-convertloop', 'convertloop_add_woo_checkout');
         add_settings_field(
             'convertloop_add_woo_checkout',
             __('Add "subscribe to newsletter" checkbox on checkout?', 'wp-convertloop'),
             array($this, 'createAddWoocommerceField'),
             'wp-convertloop',
-            'section-3'
+            'section-woo'
         );
+
+        add_settings_field(
+            'convertloop_add_woo_segment',
+            __('To which segment should the checkout subscribers need to be added', 'wp-convertloop'),
+            array($this, 'createAddWoocommerceSegment'),
+            'wp-convertloop',
+            'section-woo'
+        );
+        // }}}
+
     }
 
     /**
      * Ayuda de la única sección de la página
      */
-    public function section1()
+    public function sectionApi()
     {
         printf(__('You have to provide at least the App ID if you just want to use tracking. You can find this data  <a href="%s" target="_blank">here</a>', 'wp-convertloop'), 'https://convertloop.co/account');
     }
@@ -186,8 +199,7 @@ class Settings
         echo '<input type="text" name="convertloop_api_version" value="'.$val.'">';
     }
 
-    public function section2(){
-        _e('Configure the ConvertLoop tracking code for event tracking', 'wp-convertloop');
+    public function sectionSnip(){
     }
 
     public function createAddSnippetField()
@@ -195,9 +207,12 @@ class Settings
         $val = get_option('convertloop_add_snippet', true);
         $checked = $val ? 'checked="checked"': '';
         echo '<input type="checkbox" value="1" name="convertloop_add_snippet" '.$checked.'>';
+        echo '<br /><small>';
+        _e('Requires that you provide the App ID', 'wp-convertloop');
+        echo '</small>';
     }
 
-    public function section3(){
+    public function sectionWoo(){
         _e('Will work only if you have Woocommerce installed', 'wp-convertloop');
     }
 
@@ -207,4 +222,15 @@ class Settings
         $checked = $val ? 'checked="checked"': '';
         echo '<input type="checkbox" value="1" name="convertloop_add_woo_checkout" '.$checked.'>';
     }
+
+    public function createAddWoocommerceSegment()
+    {
+        $val = get_option('convertloop_add_woo_segment', __('clients', 'wp-convertloop'));
+        echo '<input type="text" name="convertloop_add_woo_segment" value="'.$val.'">';
+        echo '<br /><small>';
+        _e('The subscribers captured on the chackout will be added to this segment', 'wp-convertloop');
+        echo '</small>';
+    }
 }
+
+// vim:

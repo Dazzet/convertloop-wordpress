@@ -1,4 +1,8 @@
-<?php namespace WpConvertloop;
+<?php
+
+namespace WpConvertloop;
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 /*
 Plugin Name: Wordpress Convertloop
@@ -13,12 +17,15 @@ Text Domain: wp-convertloop
 Domain Path: /languages
  */
 
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), function($links) {
    $links[] = '<a href="'. esc_url( get_admin_url(null, 'options-general.php?page=wp-convertloop') ) .'">'.__('Settings').'</a>';
    return $links;
 });
+
+load_plugin_textdomain('wp-convertloop', false, basename( dirname( __FILE__ ) ) . '/languages' );
 
 // La idea es crear aqui los objetos y pasarlos como parámetros
 $convertloop = new \ConvertLoop\ConvertLoop(
