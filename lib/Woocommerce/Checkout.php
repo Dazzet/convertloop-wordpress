@@ -42,8 +42,10 @@ class Checkout
     public function newOrder($order_id)
     {
         if ($_POST['checkbox_subscribe_convertloop'] == true) {
+            $pid = $_COOKIE['dp_pid'];
             $order = wc_get_order($order_id);
             $person = array(
+                "pid"        => $pid,
                 "email"      => $order->get_billing_email(),
                 "first_name" => $order->get_billing_first_name(),
                 "last_name"  => $order->get_billing_last_name(),
