@@ -34,6 +34,9 @@ class Checkout
         add_action('woocommerce_new_order', array($this, 'newOrder'), 11, 1);
     }
 
+    /**
+     * Crea el checkbox en el formulario de compra de ConvertLoop
+     */
     public function converloopCheckbox($checkout)
     {
         woocommerce_form_field('checkbox_subscribe_convertloop', array(
@@ -46,16 +49,32 @@ class Checkout
         ), $checkout->get_value('checkbox_subscribe_convertloop'));
     }
 
+    /**
+     * Procesa los datos de checkout para enviarlos a ConvertLoop
+     */
     public function newOrder($order_id)
     {
         if ($_POST['checkbox_subscribe_convertloop'] == true) {
             $order = wc_get_order($order_id);
+            $time = time();
             $person = array(
-                "email"      => $order->get_billing_email(),
-                "first_name" => $order->get_billing_first_name(),
-                "last_name"  => $order->get_billing_last_name(),
+                'email'      => $order->get_billing_email(),
+                'first_name' => $order->get_billing_first_name(),
+                'last_name'  => $order->get_billing_last_name()
+
+            );
+            $event = array(
+                'name' => __('Start Checkout', 'wp-convertloop'),
+                'person' => $person,
+                'ocurred_at' => $time,
+                'metadata' => array(
+                    'order_total' => $order->get_total(),
+                    'order_shipping' => $order->calculate_shipping(),
+                    'order_tax' => $order->get_cart_tax()
+                )
             );
             $this->convertloop->people()->createOrUpdate($person);
+            $this->convertloop->eventLogs()->send($event);
         }
     }
 
