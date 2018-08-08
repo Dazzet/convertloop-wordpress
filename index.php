@@ -47,3 +47,9 @@ if (get_option('convertloop_add_woo_checkout', true)) {
 if (get_option('convertloop_add_snippet', false)) {
     Wordpress\TrackingCode::instance( get_option('convertloop_app_id') )->start();
 }
+
+
+// Agregar checkbox en el checkout the WooCommerce
+if (get_option('convertloop_add_woo_checkout', true)) {
+    Woocommerce\Product::instance($convertloop)->start();
+}
