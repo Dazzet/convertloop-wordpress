@@ -32,6 +32,7 @@ class Checkout
     {
         add_action('woocommerce_after_order_notes', array($this, 'converloopCheckbox'));
         add_action('woocommerce_new_order', array($this, 'newOrder'), 11, 1);
+        add_action('woocommerce_thankyou', array($this, 'thankYou'), 11, 1);
     }
 
     /**
@@ -56,7 +57,6 @@ class Checkout
     {
         if ($_POST['checkbox_subscribe_convertloop'] == true) {
             $order = wc_get_order($order_id);
-            $time = time();
             $person = array(
                 'email'      => $order->get_billing_email(),
                 'first_name' => $order->get_billing_first_name(),
@@ -66,7 +66,7 @@ class Checkout
             $event = array(
                 'name' => __('Start Checkout', 'wp-convertloop'),
                 'person' => $person,
-                'ocurred_at' => $time,
+                'ocurred_at' => time(),
                 'metadata' => array(
                     'order_total' => $order->get_total(),
                     'order_shipping' => $order->calculate_shipping(),
@@ -76,6 +76,34 @@ class Checkout
             $this->convertloop->people()->createOrUpdate($person);
             $this->convertloop->eventLogs()->send($event);
         }
+    }
+
+    public function thankYou($order_id)
+    {
+        $order = wc_get_order($order_id);
+        $person = array(
+            'email'      => $order->get_billing_email()
+        );
+        $products = array();
+        foreach ($order->get_items() as $id => $item) {
+            $products[$id] = array(
+                'name' => $item['name']
+            );
+        }
+        $event = array(
+            'name' => __('End Checkout', 'wp-convertloop'),
+            'person' => $person,
+            'ocurred_at' => time(),
+            'metadata' => array(
+                'order_total' => $order->get_total(),
+                'order_shipping' => $order->calculate_shipping(),
+                'order_tax' => $order->get_cart_tax(),
+                'order_transaction_id' => $order->transaction_id,
+                'order_products' => $products
+            )
+        );
+        $this->convertloop->eventLogs()->send($event);
+
     }
 
 }
