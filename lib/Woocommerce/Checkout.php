@@ -61,8 +61,8 @@ class Checkout
             $person = array(
                 'email'      => $order->get_billing_email(),
                 'first_name' => $order->get_billing_first_name(),
-                'last_name'  => $order->get_billing_last_name()
-
+                'last_name'  => $order->get_billing_last_name(),
+                "pid"        => $pid
             );
             $event = array(
                 'name' => __('Start Checkout', 'wp-convertloop'),
