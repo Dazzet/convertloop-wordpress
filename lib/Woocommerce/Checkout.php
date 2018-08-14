@@ -56,6 +56,7 @@ class Checkout
     public function newOrder($order_id)
     {
         if ($_POST['checkbox_subscribe_convertloop'] == true) {
+            $pid = $_COOKIE['dp_pid'];
             $order = wc_get_order($order_id);
             $person = array(
                 'email'      => $order->get_billing_email(),
