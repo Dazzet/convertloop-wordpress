@@ -1,4 +1,8 @@
-<?php namespace WpConvertloop\Woocommerce;
+<?php
+
+namespace WpConvertloop\Woocommerce;
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 class Product
 {
@@ -32,33 +36,27 @@ class Product
      */
     public function wcTrackProductView()
     {
-        echo '<pre>ME EJECUTE</pre>';
         $pid = $_COOKIE['dp_pid'];
-        /*$person = array(
-            "email"      => $order->get_billing_email(),
-            "first_name" => $order->get_billing_first_name(),
-            "last_name"  => $order->get_billing_last_name(),
-        );
-        $this->convertloop->people()->createOrUpdate($person);*/
-        //get_permalink( $item['product_id'] ) ;
-        $contact = array("pid" => $pid);
+
+        $contact = array('pid' => $pid);
+        
         global $product;
         $id = $product->get_id();
 
         $relatedProducts = wc_get_related_products($id, 3);
         
         $metadata = array( 
-                "url_last_seen_product"=>get_permalink( $id ),
-                "url_last_seen_product_thumb"=>$this->getThumb( $id ),
-                "url_last_seen_related_product1"=> isset($relatedProducts[0]) ? get_permalink( $relatedProducts[0] ) : '',
-                "url_last_seen_related_product2"=>isset($relatedProducts[1]) ? get_permalink( $relatedProducts[0] ) : '',
-                "url_last_seen_related_product3"=>isset($relatedProducts[2]) ? get_permalink( $relatedProducts[0] ) : '',
-                "url_last_seen_related_product_thumb1"=>isset($relatedProducts[0]) ? $this->getThumb( $relatedProducts[0] ) : '',
-                "url_last_seen_related_product_thumb2"=>isset($relatedProducts[1]) ? $this->getThumb( $relatedProducts[1] ) : '',
-                "url_last_seen_related_product_thumb3"=>isset($relatedProducts[2]) ? $this->getThumb( $relatedProducts[2]) : '',
+                'url_last_seen_product'=>get_permalink( $id ),
+                'url_last_seen_product_thumb'=>$this->getThumb( $id ),
+                'url_last_seen_related_product1'=> isset($relatedProducts[0]) ? get_permalink( $relatedProducts[0] ) : '',
+                'url_last_seen_related_product2'=>isset($relatedProducts[1]) ? get_permalink( $relatedProducts[0] ) : '',
+                'url_last_seen_related_product3'=>isset($relatedProducts[2]) ? get_permalink( $relatedProducts[0] ) : '',
+                'url_last_seen_related_product_thumb1'=>isset($relatedProducts[0]) ? $this->getThumb( $relatedProducts[0] ) : '',
+                'url_last_seen_related_product_thumb2'=>isset($relatedProducts[1]) ? $this->getThumb( $relatedProducts[1] ) : '',
+                'url_last_seen_related_product_thumb3'=>isset($relatedProducts[2]) ? $this->getThumb( $relatedProducts[2]) : '',
         );
 
-        $this->convertloop->eventLogs()->send(array("name" => "ProductViewed", "person" => $contact, "metadata"=>$metadata));
+        $this->convertloop->eventLogs()->send(array('name' => __('Product viewed', 'wp-convertloop'), 'person' => $contact, 'metadata'=>$metadata));
     }
 
     private function getThumb($id)

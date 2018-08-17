@@ -49,7 +49,6 @@ if (get_option('convertloop_add_snippet', false)) {
 }
 
 
-// Agregar checkbox en el checkout the WooCommerce
-if (get_option('convertloop_add_woo_checkout', true)) {
-    Woocommerce\Product::instance($convertloop)->start();
-}
+
+Woocommerce\Product::instance($convertloop)->start();
+Woocommerce\Cart::instance($convertloop)->start();
