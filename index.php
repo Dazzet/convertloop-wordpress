@@ -47,3 +47,8 @@ if (get_option('convertloop_add_woo_checkout', true)) {
 if (get_option('convertloop_add_snippet', false)) {
     Wordpress\TrackingCode::instance( get_option('convertloop_app_id') )->start();
 }
+
+
+
+Woocommerce\Product::instance($convertloop)->start();
+Woocommerce\Cart::instance($convertloop)->start();
