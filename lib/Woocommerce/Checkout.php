@@ -56,14 +56,15 @@ class Checkout
     public function newOrder($order_id)
     {
         if ($_POST['checkbox_subscribe_convertloop'] == true) {
-            $pid = $_COOKIE['dp_pid'];
             $order = wc_get_order($order_id);
             $person = array(
                 'email'      => $order->get_billing_email(),
                 'first_name' => $order->get_billing_first_name(),
-                'last_name'  => $order->get_billing_last_name(),
-                "pid"        => $pid
+                'last_name'  => $order->get_billing_last_name()
             );
+            if (!empty($_COOKIE['dp_pid'])) {
+                $person['pid'] = $_COOKIE['dp_pid'];
+            }
             $event = array(
                 'name' => __('Start Checkout', 'wp-convertloop'),
                 'person' => $person,
@@ -80,11 +81,16 @@ class Checkout
     }
 
     public function thankYou($order_id)
-    {
+    {   
         $order = wc_get_order($order_id);
         $person = array(
             'email'      => $order->get_billing_email()
         );
+
+        if (!empty($_COOKIE['dp_pid'])) {
+            $person['pid'] = $_COOKIE['dp_pid'];
+        }
+
         $products = array();
         foreach ($order->get_items() as $id => $item) {
             $products[$id] = array(
