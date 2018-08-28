@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "convertloop/convertloop-php",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/germanescobar/convertloop-php.git",
-                "reference": "a4d9a1e2d6385d093d016a876c53970a6753ea1a"
+                "reference": "ceba9ea1956fc56b458dec30fe241b77d1370183"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/germanescobar/convertloop-php/zipball/a4d9a1e2d6385d093d016a876c53970a6753ea1a",
-                "reference": "a4d9a1e2d6385d093d016a876c53970a6753ea1a",
+                "url": "https://api.github.com/repos/germanescobar/convertloop-php/zipball/ceba9ea1956fc56b458dec30fe241b77d1370183",
+                "reference": "ceba9ea1956fc56b458dec30fe241b77d1370183",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 }
             ],
             "description": "A PHP client of the ConvertLoop API",
-            "time": "2016-12-16T23:11:11+00:00"
+            "time": "2018-08-05T19:10:46+00:00"
         }
     ],
     "packages-dev": [],

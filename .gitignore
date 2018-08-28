@@ -1,3 +1,5 @@
 /vendor/
-*~
+/deploy.sh
 .DS_Store
+/*.zip
+*~

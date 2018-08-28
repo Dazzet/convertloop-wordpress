@@ -17,10 +17,6 @@
       }
     },
     "scripts": {
-      "rsync": [
-        "compooser update -o",
-        "rsync -avz -e ssh --delete --exclude=.git  ./* mario.yepes@wp01.dazzet.co:/var/www/wp/wp-content/plugins/convertloop-wordpress/",
-        "composer update"
-      ]
+      "zip": "T_DIR=`basename ${PWD}` && cd .. && zip -r ${T_DIR}/${T_DIR}.zip ${T_DIR} -x *.git* -x ${T_DIR}/README.md -x ${T_DIR}/composer.* -x ${T_DIR}/*.zip"
     }
 }
