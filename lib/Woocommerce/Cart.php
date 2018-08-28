@@ -63,9 +63,9 @@ class Cart
 
         $metadata = array(
             'test_html' => '
-            <table>
+            <table cellpadding="4">
                 <tr>
-                    <th>Imagen</th>
+                    <th></th>
                     <th>Producto</th>
                     <th>Precio</th>
                     <th>Cantidad</th>
