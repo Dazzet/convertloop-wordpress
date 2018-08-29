@@ -17,11 +17,15 @@ You can save this script in a file called `deploy.sh` changing the `path` and th
 ```bash
 REMOTE_USER=myusername
 REMOTE_SERVER=example.com
-REMOTE_PATH=/path/to/wp/wp-content/`basename ${PWD}` # No trailing '/'
+REMOTE_PATH=/path/to/wp/wp-content/plugins/`basename ${PWD}` # No trailing '/'
+EXCLUDE="--exclude=.* --exclude=*.zip --exclude=*.md --exclude=composer* --exclude=*.sh"
+
+echo "Syncing to ${REMOTE_PATH} on ${REMOTE_SERVER}"
+sleep 3
 
 composer dump-autoload --no-dev -o
 
-rsync -avz -e ssh --delete --exclude=.git* --exclude=*.zip --exclude=.DS_Store ./* ${REMOTE_USER}@${REMOTE_SERVER}:${REMOTE_PATH}/
+rsync -avz -e ssh --delete ${EXCLUDE} ./* ${REMOTE_USER}@${REMOTE_SERVER}:${REMOTE_PATH}/
 ```
 
 ## Create zip plugin file
