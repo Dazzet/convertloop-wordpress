@@ -77,6 +77,10 @@ class Form
             $person['add_to_segments'] = $segment;
         }
 
+        if (!empty($_COOKIE['dp_pid'])) {
+            $person['pid'] = $_COOKIE['dp_pid'];
+        }
+
         $this->convertloop->people()->createOrUpdate($person);
 
         // Si este formulario genera un evento, lo registramos
