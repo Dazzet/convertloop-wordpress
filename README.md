@@ -6,14 +6,15 @@ This plugins integrates Wordpress with Convertloop.
 
 ```bash
 cd /path/to/wp/wp-content/plugins/
-git clone git@bitbucket.org:dazzet/woocommerce-coordinadora.git
-cd woocommerce-coordinadora
+git clone git@bitbucket.org:dazzet/convertloop-wordpress
+cd convertloop-wordpress
 composer install
 ```
 
 ## Deployment on a test server
 
 You can save this script in a file called `deploy.sh` changing the `path` and the `username` of the remote server
+
 ```bash
 REMOTE_USER=myusername
 REMOTE_SERVER=example.com
