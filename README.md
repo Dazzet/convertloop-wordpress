@@ -1,7 +1,17 @@
 # Wordpress ConvertLoop Plugin
 
-This plugins integrates Wordpress with Convertloop.
+Integrates [ConvertLoop](https://convertloop.co) with Wordpress
 
+Add options in **Contact Form 7** and **Woocommerce** to register users in ConvertLoop. Also adds the ConvertLoop tracking code in the Wordpress header
+
+![](screenshots/screenshot-1.png)
+
+![](screenshots/screenshot-2.png)
+
+![](screenshots/screenshot-3.png)
+
+
+For this plugin to work, you need an ApiID and ApiKey which can be retreived in your [convertloop account](https://convertloop.co/account) (in WebTracking > Tracking Code section)
 ## Development setup
 
 ```bash
