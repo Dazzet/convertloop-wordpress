@@ -6,7 +6,7 @@ This plugins integrates Wordpress with Convertloop.
 
 ```bash
 cd /path/to/wp/wp-content/plugins/
-git clone git@bitbucket.org:dazzet/convertloop-wordpress
+git clone git@github.com:Dazzet/convertloop-wordpress.git
 cd convertloop-wordpress
 composer install
 ```

@@ -5,9 +5,9 @@ namespace WpConvertloop;
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 /*
-Plugin Name: Wordpress Convertloop
+Plugin Name: Convertloop Wordpress
 Plugin URI:  https://dazzet.co/
-Description: Convertloop for wordpress
+Description: Convertloop for Wordpress
 Author:      Mario Yepes, Sebastian Usuga, Eduardo Diaz
 Author URI:  https://dazzet.co
 Version:     0.0.1
@@ -48,7 +48,6 @@ if (get_option('convertloop_add_snippet', false)) {
     Wordpress\TrackingCode::instance( get_option('convertloop_app_id') )->start();
 }
 
-
-
 Woocommerce\Product::instance($convertloop)->start();
 Woocommerce\Cart::instance($convertloop)->start();
+
