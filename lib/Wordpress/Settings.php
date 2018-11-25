@@ -12,12 +12,7 @@ class Settings
     public static function instance()
     {
         static $obj;
-
-        if (!isset($obj)) {
-            $obj = new self;
-        }
-
-        return $obj;
+        return isset($obj) ? $obj : $obj = new self();
     }
 
     private function __construct()
@@ -32,7 +27,6 @@ class Settings
     {
         add_action('admin_menu', array($this, 'addMenuItem'),  11);
         add_action('admin_init', array($this, 'createSectionsAndFields'));
-
     }
 
     /**
@@ -67,8 +61,7 @@ class Settings
         </form>
 
     </div>
-        <?php
-
+<?php
         return $this;
     }
 
@@ -149,6 +142,15 @@ class Settings
             'section-woo'
         );
 
+        register_setting('wp-convertloop', 'convertloop_woo_checkout_label');
+        add_settings_field(
+            'convertloop_woo_checkout_label',
+            __('"Subscribe to newsletter" label description', 'wp-convertloop'),
+            array($this, 'createWooCheckoutLabel'),
+            'wp-convertloop',
+            'section-woo'
+        );
+
         add_settings_field(
             'convertloop_add_woo_segment',
             __('To which segment should the checkout subscribers need to be added', 'wp-convertloop'),
@@ -165,7 +167,7 @@ class Settings
      */
     public function sectionApi()
     {
-        printf(__('You have to provide at least the App ID if you just want to use tracking. You can find this data  <a href="%s" target="_blank">here</a>', 'wp-convertloop'), 'https://convertloop.co/account');
+        printf(__('You have to provide at least the App ID if you just want to use tracking. You can find this information <a href="%s" target="_blank">here</a> (In Web Tracking > Tracking Code)', 'wp-convertloop'), 'https://convertloop.co/account');
     }
 
 
@@ -175,7 +177,7 @@ class Settings
     public function createAppIdField()
     {
         $val = get_option('convertloop_app_id');
-        echo '<input type="text" name="convertloop_app_id" value="'.$val.'" required="required">';
+        echo '<input type="text" name="convertloop_app_id" value="'.$val.'" required="required" class="regular-text">';
     }
 
     /**
@@ -184,7 +186,7 @@ class Settings
     public function createApiKeyField()
     {
         $val = get_option('convertloop_api_key');
-        echo '<input type="password" name="convertloop_api_key" value="'.$val.'">';
+        echo '<input type="password" name="convertloop_api_key" value="'.$val.'" class="regular-text">';
         echo '<br /><small>';
         _e('Only if you want to send data to ConvertLoop in forms', 'wp-convertloop');
         echo '</small>';
@@ -196,7 +198,7 @@ class Settings
     public function createApiVersionField()
     {
         $val = get_option('convertloop_api_version', 'v1');
-        echo '<input type="text" name="convertloop_api_version" value="'.$val.'">';
+        echo '<input type="text" name="convertloop_api_version" value="'.$val.'" class="regular-text">';
     }
 
     public function sectionSnip(){
@@ -223,10 +225,19 @@ class Settings
         echo '<input type="checkbox" value="1" name="convertloop_add_woo_checkout" '.$checked.'>';
     }
 
+    public function createWooCheckoutLabel()
+    {
+        $val = get_option('convertloop_woo_checkout_label');
+        echo '<input type="text" name="convertloop_woo_checkout_label" value="'.$val.'" class="regular-text">';
+        echo '<br /><small>';
+        _e('This is the label that the checkbox "Subscribe to newsletter" will have', 'wp-convertloop');
+        echo '</small>';
+    }
+
     public function createAddWoocommerceSegment()
     {
         $val = get_option('convertloop_add_woo_segment', __('clients', 'wp-convertloop'));
-        echo '<input type="text" name="convertloop_add_woo_segment" value="'.$val.'">';
+        echo '<input type="text" name="convertloop_add_woo_segment" value="'.$val.'" class="regular-text">';
         echo '<br /><small>';
         _e('The subscribers captured on the chackout will be added to this segment', 'wp-convertloop');
         echo '</small>';

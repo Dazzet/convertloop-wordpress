@@ -45,7 +45,7 @@ class Checkout
             'class' => array(
                 'checkbox-convertloop',
             ),
-            'label' => __('I want to receive information about deals and discounts', 'wp-convertloop'),
+            'label' => get_option('convertloop_woo_checkout_label', __('I want to receive information about deals and discounts', 'wp-convertloop')),
             'default' => true,
         ), $checkout->get_value('checkbox_subscribe_convertloop'));
     }
@@ -81,7 +81,7 @@ class Checkout
     }
 
     public function thankYou($order_id)
-    {   
+    {
         $order = wc_get_order($order_id);
         $person = array(
             'email'      => $order->get_billing_email()
@@ -110,7 +110,6 @@ class Checkout
             )
         );
         $this->convertloop->eventLogs()->send($event);
-
     }
 
 }
